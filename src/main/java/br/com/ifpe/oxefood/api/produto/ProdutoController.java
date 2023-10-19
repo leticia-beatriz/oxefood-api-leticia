@@ -1,7 +1,5 @@
-package br.com.ifpe.oxefood.api.cliente;
+package br.com.ifpe.oxefood.api.produto;
 import java.util.List;
-
-//import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,47 +14,47 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.ifpe.oxefood.modelo.cliente.Cliente;
-import br.com.ifpe.oxefood.modelo.cliente.ClienteService;
+import br.com.ifpe.oxefood.modelo.produto.Produto;
+import br.com.ifpe.oxefood.modelo.produto.ProdutoService;
 
 @RestController
-@RequestMapping("/api/cliente")
+@RequestMapping("/api/produto")
 @CrossOrigin
-public class ClienteController {
+public class ProdutoController {
 
    @Autowired
-   private ClienteService clienteService;
+   private ProdutoService produtoService;
 
    @PostMapping
-   public ResponseEntity<Cliente> save(@RequestBody ClienteRequest request) {
+   public ResponseEntity<Produto> save(@RequestBody ProdutoRequest request) {
 
-       Cliente cliente = clienteService.save(request.build());
-       return new ResponseEntity<Cliente>(cliente, HttpStatus.CREATED);
-       
+       Produto produto = produtoService.save(request.build());
+       return new ResponseEntity<Produto>(produto, HttpStatus.CREATED);
    }
-   
    @GetMapping
-    public List<Cliente> findAll() {
+    public List<Produto> findAll() {
   
-        return clienteService.findAll();
+        return produtoService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Cliente findById(@PathVariable Long id) {
+    public Produto findById(@PathVariable Long id) {
 
-        return clienteService.findById(id);
+        return produtoService.findById(id);
     }
     @PutMapping("/{id}")
-   public ResponseEntity<Cliente> update(@PathVariable("id") Long id, @RequestBody ClienteRequest request) {
+   public ResponseEntity<Produto> update(@PathVariable("id") Long id, @RequestBody ProdutoRequest request) {
 
-       clienteService.update(id, request.build());
+       produtoService.update(id, request.build());
        return ResponseEntity.ok().build();
    }
-  @DeleteMapping("/{id}")
+   @DeleteMapping("/{id}")
    public ResponseEntity<Void> delete(@PathVariable Long id) {
 
-       clienteService.delete(id);
+       produtoService.delete(id);
        return ResponseEntity.ok().build();
    }
 
+
 }
+
